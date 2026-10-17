@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/records/records"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "番茄时钟",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f8fc"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ff6b6b",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "番茄时钟"
+      },
+      {
+        "pagePath": "pages/records/records",
+        "text": "记录"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

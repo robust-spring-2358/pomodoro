@@ -1,0 +1,28 @@
+<!-- pages/records/records.wxml —— 记录表格页 -->
+
+<view class="page">
+
+  <!-- 顶部操作按钮 -->
+  <view class="toolbar">
+    <view class="tool-btn export" hover-class="btn-hover" bindtap="exportCsv">导出 Excel 文件</view>
+    <view class="tool-btn clear" hover-class="btn-hover" bindtap="clearAll">清空记录</view>
+  </view>
+
+  <!-- 没有记录时显示 -->
+  <view wx:if="{{records.length === 0}}" class="empty">还没有记录，先去完成第一个番茄吧！</view>
+
+  <!-- Excel 样式的记录表格 -->
+  <view wx:else class="table">
+    <view class="row header">
+      <view class="cell col1">开始时间（北京时间）</view>
+      <view class="cell col2">计时时长</view>
+      <view class="cell col3">做的事情</view>
+    </view>
+    <view class="row" wx:for="{{records}}" wx:key="index">
+      <view class="cell col1">{{item.startText}}</view>
+      <view class="cell col2">{{item.durationText}}</view>
+      <view class="cell col3">{{item.task}}</view>
+    </view>
+  </view>
+
+</view>

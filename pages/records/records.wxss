@@ -1,0 +1,89 @@
+/* pages/records/records.wxss —— 记录表格页的样式 */
+
+.page {
+  padding: 24rpx;
+}
+
+/* ===== 顶部按钮 ===== */
+.toolbar {
+  display: flex;
+  margin-bottom: 24rpx;
+}
+
+.tool-btn {
+  flex: 1;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  border-radius: 42rpx;
+  font-size: 28rpx;
+}
+
+.tool-btn + .tool-btn {
+  margin-left: 24rpx;
+}
+
+.tool-btn.export {
+  background: #4ecdc4;
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(78, 205, 196, 0.35);
+}
+
+.tool-btn.clear {
+  background: #ffffff;
+  color: #666666;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.btn-hover {
+  opacity: 0.8;
+}
+
+/* ===== 空状态提示 ===== */
+.empty {
+  margin-top: 200rpx;
+  text-align: center;
+  color: #bbbbbb;
+  font-size: 28rpx;
+}
+
+/* ===== Excel 样式的表格 ===== */
+.table {
+  background: #ffffff;
+  border: 1rpx solid #dddddd;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.row + .row {
+  border-top: 1rpx solid #dddddd;
+}
+
+.cell {
+  padding: 20rpx 12rpx;
+  font-size: 26rpx;
+  color: #333333;
+  border-right: 1rpx solid #dddddd;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+.row.header .cell {
+  background: #f5f6f8;
+  font-weight: bold;
+  color: #555555;
+  justify-content: center;
+}
+
+.col1 { width: 44%; }
+.col2 { width: 22%; justify-content: center; }
+.col3 { width: 34%; justify-content: center; }

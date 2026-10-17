@@ -1,0 +1,5 @@
+/* app.wxss —— 全局样式（所有页面共用） */
+page {
+  background: #f7f8fc;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}

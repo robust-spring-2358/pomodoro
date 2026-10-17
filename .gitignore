@@ -1,0 +1,19 @@
+# 依赖目录（以后如果用 npm 安装东西，不用上传）
+node_modules/
+
+# 小程序 npm 构建出来的目录
+miniprogram_npm/
+
+# 微信开发者工具的私人配置文件（每台电脑内容不同，不要上传）
+project.private.config.json
+
+# 编辑器生成的配置
+.idea/
+.vscode/
+
+# 系统自动生成的文件
+.DS_Store
+Thumbs.db
+
+# 日志和临时文件
+*.log

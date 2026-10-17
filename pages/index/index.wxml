@@ -1,0 +1,47 @@
+<!-- pages/index/index.wxml —— 页面结构（相当于网页的 HTML） -->
+
+<view class="container">
+
+  <!-- 顶部：模式切换 -->
+  <view class="mode-tabs">
+    <view class="tab {{mode === 'work' ? 'active work' : ''}}" hover-class="btn-hover" bindtap="switchMode" data-mode="work">工作</view>
+    <view class="tab {{mode === 'shortBreak' ? 'active break' : ''}}" hover-class="btn-hover" bindtap="switchMode" data-mode="shortBreak">短休息</view>
+    <view class="tab {{mode === 'longBreak' ? 'active long' : ''}}" hover-class="btn-hover" bindtap="switchMode" data-mode="longBreak">长休息</view>
+  </view>
+
+  <!-- 选择本次要做的事 -->
+  <view class="task-picker">
+    <text class="task-label">本次要做什么</text>
+    <picker mode="selector" range="{{taskOptions}}" value="{{taskIndex}}" bindchange="onTaskChange">
+      <view class="task-value">{{taskOptions[taskIndex]}} <text class="task-arrow">▾</text></view>
+    </picker>
+  </view>
+
+  <!-- 中间：圆环进度 + 时间 -->
+  <view class="clock-wrap">
+    <canvas type="2d" id="progressCanvas" class="progress-canvas"></canvas>
+    <view class="clock-info">
+      <text class="time-text">{{timeText}}</text>
+      <text class="mode-text">{{modeText}}</text>
+    </view>
+  </view>
+
+  <!-- 按钮：开始/暂停 + 重置 -->
+  <view class="buttons">
+    <view class="btn primary" hover-class="btn-hover" bindtap="toggleTimer">{{isRunning ? '暂停' : '开始'}}</view>
+    <view class="btn ghost" hover-class="btn-hover" bindtap="resetTimer">重置</view>
+  </view>
+
+  <!-- 底部：完成统计 -->
+  <view class="stats">
+    <view class="stat-item">
+      <text class="stat-num">{{todayCount}}</text>
+      <text class="stat-label">今日番茄</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{totalCount}}</text>
+      <text class="stat-label">累计番茄</text>
+    </view>
+  </view>
+
+</view>

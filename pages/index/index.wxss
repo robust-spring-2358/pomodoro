@@ -1,0 +1,170 @@
+/* pages/index/index.wxss —— 页面样式（相当于网页的 CSS） */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60rpx;
+}
+
+/* ===== 顶部模式切换 ===== */
+.mode-tabs {
+  display: flex;
+  background: #ffffff;
+  border-radius: 60rpx;
+  padding: 8rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab {
+  padding: 16rpx 44rpx;
+  font-size: 28rpx;
+  color: #999999;
+  border-radius: 52rpx;
+}
+
+.tab.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tab.active.work { background: #ff6b6b; }
+.tab.active.break { background: #4ecdc4; }
+.tab.active.long { background: #45b7d1; }
+
+/* ===== 事项选择下拉框 ===== */
+.task-picker {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+  background: #ffffff;
+  border-radius: 44rpx;
+  padding: 14rpx 24rpx 14rpx 32rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.task-label {
+  font-size: 26rpx;
+  color: #999999;
+  margin-right: 16rpx;
+}
+
+.task-value {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 600;
+}
+
+.task-arrow {
+  color: #cccccc;
+  margin-left: 8rpx;
+}
+
+/* ===== 中间的时钟圆环 ===== */
+.clock-wrap {
+  position: relative;
+  width: 500rpx;
+  height: 500rpx;
+  margin-top: 40rpx;
+}
+
+.progress-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.clock-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-text {
+  font-size: 96rpx;
+  font-weight: bold;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+.mode-text {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+/* ===== 按钮 ===== */
+.buttons {
+  display: flex;
+  margin-top: 70rpx;
+}
+
+.btn {
+  width: 240rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+}
+
+.btn + .btn {
+  margin-left: 40rpx;
+}
+
+.btn-hover {
+  opacity: 0.8;
+}
+
+.btn.primary {
+  background: #ff6b6b;
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.35);
+}
+
+.btn.ghost {
+  background: #ffffff;
+  color: #666666;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+/* ===== 底部统计 ===== */
+.stats {
+  display: flex;
+  margin-top: 90rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 30rpx 0;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.stat-item {
+  width: 240rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-item + .stat-item {
+  border-left: 1rpx solid #eeeeee;
+}
+
+.stat-num {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ff6b6b;
+}
+
+.stat-label {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
