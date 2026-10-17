@@ -1,11 +1,13 @@
 // pages/index/index.js —— 番茄时钟的核心逻辑
 
-// 各模式的时长（单位：秒），想改时长改这里就行
-const DURATIONS = {
-  work: 40 * 60,       // 工作：40 分钟
-  shortBreak: 10 * 60,  // 短休息：10 分钟
+// 休息模式的固定时长（单位：秒），想改休息时长改这里
+const BREAK_DURATIONS = {
+  shortBreak: 10 * 60, // 短休息：10 分钟
   longBreak: 15 * 60   // 长休息：15 分钟
 }
+
+// 可自选的工作时长（分钟），想增减选项改这里
+const MINUTE_OPTIONS = [3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
 
 // 各模式显示在圆环里的文字
 const MODE_TEXT = {
@@ -38,7 +40,10 @@ Page({
     todayCount: 0,         // 今天完成的番茄数
     totalCount: 0,         // 累计完成的番茄数
     taskOptions: ['数学作业', '语文作业', '英语作业', '书法', '游戏', '读书'], // 下拉选项
-    taskIndex: 0           // 当前选中第几个选项
+    taskIndex: 0,          // 当前选中第几个选项
+    minuteOptions: MINUTE_OPTIONS, // 可选时长列表
+    minuteIndex: 8,        // 默认选第 8 个 = 40 分钟
+    workMinutes: 40        // 工作倒计时当前时长（分钟）
   },
 
   onLoad() {
@@ -125,9 +130,26 @@ Page({
     this.setData({ taskIndex: Number(e.detail.value) })
   },
 
+  // 选择倒计时时长（下拉框）
+  onMinuteChange(e) {
+    const index = Number(e.detail.value)
+    this.setData({ minuteIndex: index, workMinutes: this.data.minuteOptions[index] })
+    // 如果当前是工作模式，就把时间重置成新选的时长；休息模式不受影响
+    if (this.data.mode === 'work') {
+      this.stopTick()
+      this.setMode('work')
+    }
+  },
+
+  // 计算某个模式的时长（毫秒）：工作模式用自己选的分钟数，休息模式用固定时长
+  durationOf(mode) {
+    if (mode === 'work') return this.data.workMinutes * 60 * 1000
+    return BREAK_DURATIONS[mode] * 1000
+  },
+
   // 设置模式，并把时间重置到该模式的时长
   setMode(mode) {
-    this.remainingMs = DURATIONS[mode] * 1000
+    this.remainingMs = this.durationOf(mode)
     this.setData({ mode, modeText: MODE_TEXT[mode], isRunning: false })
     this.updateDisplay(this.remainingMs)
   },
@@ -177,7 +199,7 @@ Page({
 
   // 更新显示：时间文字 + 圆环
   updateDisplay(remainingMs) {
-    const totalMs = DURATIONS[this.data.mode] * 1000
+    const totalMs = this.durationOf(this.data.mode)
     const secs = Math.ceil(remainingMs / 1000)
     const m = Math.floor(secs / 60)
     const s = secs % 60
@@ -244,8 +266,8 @@ Page({
   saveRecord() {
     const records = wx.getStorageSync('pomodoroRecords') || []
     records.push({
-      startText: formatBeijingTime(this.sessionStartTime || Date.now() - DURATIONS.work * 1000), // 开始时间（北京时间）
-      durationText: `${DURATIONS.work / 60} 分钟`, // 计时时长
+      startText: formatBeijingTime(this.sessionStartTime || Date.now() - this.data.workMinutes * 60 * 1000), // 开始时间（北京时间）
+      durationText: `${this.data.workMinutes} 分钟`, // 计时时长
       task: this.data.taskOptions[this.data.taskIndex] // 做的事情
     })
     wx.setStorageSync('pomodoroRecords', records)

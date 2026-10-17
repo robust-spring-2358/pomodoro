@@ -60,6 +60,11 @@
   margin-left: 8rpx;
 }
 
+/* 第二个下拉框和第一个之间留一点距离 */
+.task-picker + .task-picker {
+  margin-top: 20rpx;
+}
+
 /* ===== 中间的时钟圆环 ===== */
 .clock-wrap {
   position: relative;

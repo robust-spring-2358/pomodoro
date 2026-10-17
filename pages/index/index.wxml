@@ -17,6 +17,14 @@
     </picker>
   </view>
 
+  <!-- 选择倒计时时长 -->
+  <view class="task-picker">
+    <text class="task-label">倒计时时长</text>
+    <picker mode="selector" range="{{minuteOptions}}" value="{{minuteIndex}}" bindchange="onMinuteChange">
+      <view class="task-value">{{minuteOptions[minuteIndex]}} 分钟 <text class="task-arrow">▾</text></view>
+    </picker>
+  </view>
+
   <!-- 中间：圆环进度 + 时间 -->
   <view class="clock-wrap">
     <canvas type="2d" id="progressCanvas" class="progress-canvas"></canvas>
